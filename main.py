@@ -57,7 +57,7 @@ logicheskay_peremenay = True
 while logicheskay_peremenay != False:
     # 1(4 отступа) отвечают за действие в игровом цикле
     for event in pygame.event.get():
-        print(event)
+        #print(event)
         #2(8 пультов от ядерки)отвечают за что-то неведомое(ой за действия мышкой,кошкой и клавиатурой)
         if event.type == pygame.QUIT:
             logicheskay_peremenay = False
@@ -83,7 +83,7 @@ while logicheskay_peremenay != False:
                 beg_v_vniz = False
 
         mouse_batonchik = pygame.mouse.get_pressed()#этот метод оследит и отслеживает нажатие мышки
-        if mouse_batonchik [0] :#если клик левой кнопкой то это ничего туцтуцтуцтуцтуц
+        if mouse_batonchik[0] and ocherednoe_nechto == 1:#если клик левой кнопкой то это ничего туцтуцтуцтуцтуц
             #print(event.pos)
             pos_x = event.pos[0]
             pos_y = event.pos[1]
@@ -91,9 +91,7 @@ while logicheskay_peremenay != False:
 
                 ocherednoe_nechto = 2#прячем меню номер 101 (ой, 1)
 
-        if mouse_batonchik[0]:
-            pos_x = event.pos[0]
-            pos_y = event.pos[1]
+
             if pos_x >= 966 and pos_x <= 1343 and pos_y >= 655 and pos_y <= 721:
                 print("хомяяяяяяяяяяяяяяяяяяяяк")
                 logicheskay_peremenay = False
@@ -107,7 +105,7 @@ while logicheskay_peremenay != False:
         screen.blit(exit_batonchik, (960, 650))
         #nazad = pygame.image.load("o_o/nazad.png")
         #screen.blit(nazad, (4, 809))
-        screen.blit(options,(699,809))
+        screen.blit(options,(399,659))
         screen.blit(serwer,(400,400))
     if ocherednoe_nechto == 2:
         if beg_v_levo == True:
