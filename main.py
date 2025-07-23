@@ -19,7 +19,8 @@ f = 600
 
 
 
-sistemskin = random.randint(1,4)
+sistemskin = 1
+
 two_b_two_t = random.randint(1,3)
 if two_b_two_t == 1:
     two = 100
@@ -113,7 +114,6 @@ while logicheskay_peremenay != False:
 
         if event.type == pygame.QUIT:
             logicheskay_peremenay = False
-
         if event.type == pygame.KEYDOWN:#отслеживаем тык по кнопке
             if event.key == 97:#a
                 beg_v_levo = True
@@ -137,6 +137,15 @@ while logicheskay_peremenay != False:
         mouse_batonchik = pygame.mouse.get_pressed()#этот метод оследит и отслеживает нажатие мышки
         if mouse_batonchik[0] and ocherednoe_nechto == 1:#если клик левой кнопкой то это ничего туцтуцтуцтуцтуц
             #print(event.pos)
+            if skin2.collidepoint(event.pos):
+                sistemskin += 1
+                if sistemskin == 5:
+                    sistemskin = 1
+            if skin.collidepoint(event.pos):
+                sistemskin -= 1
+                if sistemskin == 0:
+                    sistemskin = 4
+
             pos_x = event.pos[0]
             pos_y = event.pos[1]
             if pos_x >= start_x and pos_x <= finish_x and pos_y >= start_y and pos_y <= finish_y:#огромная махина отслеживания тыка по кнопке на координтах
@@ -149,6 +158,7 @@ while logicheskay_peremenay != False:
                 logicheskay_peremenay = False
     #2 логические операции в игре
         #print("крипер? нет нажали мышкой",mouse_batonchik,exitmouse_batonchik)
+
     if ocherednoe_nechto == 2:
         bullet = pygame.Rect(c, d, 10, 20)  # обьект прям(угольник забрали :(  ) x,y,w,h
 
@@ -193,8 +203,10 @@ while logicheskay_peremenay != False:
     if ocherednoe_nechto == 2:
         if sistemskin == 1:
             screen.blit(herobrine,(a,b))
+            screen.blit(herobrine, (0, 0))
         if sistemskin == 2:
             screen.blit(bisnes_kripi,(a,b))
+            screen.blit(bisnes_kripi, (0, 0))
         if sistemskin == 3:
             screen.blit(mr_hamster, (a, b))
         if sistemskin == 4:
