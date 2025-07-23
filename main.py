@@ -1,16 +1,34 @@
 import pygame#импортировали БИБЛИОТЕКУ с книжками
 import sys#импортировали модуль суслика для работы с компухтром
 import random
-a = 300
-
-b = 400
-
-c = 300
-
-d =400
-
-sistemskin = random.randint(1,2)
 pygame.init()
+poroh_dly_oruzhiay = 0
+
+a = 700
+
+b = 650
+
+c = 750
+
+d = 600
+
+e = 970
+
+f = 600
+
+
+
+
+sistemskin = random.randint(1,4)
+two_b_two_t = random.randint(1,3)
+if two_b_two_t == 1:
+    two = 100
+if two_b_two_t == 2:
+    two = 10
+if two_b_two_t == 3:
+    two = 12.5
+
+i_snowa = 0
 
 aboba = pygame.display.Info()
 print(aboba)
@@ -39,6 +57,11 @@ options = pygame.image.load("o_o/options.png")
 
 soloplayay = pygame.image.load("o_o/soloplayay.png")
 
+pistolet = pygame.image.load("o_o/pistolet.png")
+
+zombi = pygame.image.load("o_o/zombu.png")
+zombi = pygame.transform.scale(zombi,(146,181))
+
 start_x = 400
 start_y = 500
 finish_x = 1191
@@ -48,17 +71,46 @@ serwer = pygame.image.load("o_o/serwer.png")
 
 herobrine = pygame.image.load("o_o/herobrin_model.png")
 
-bisnes_kripi = pygame.image.load("o_o/bisnes_kripi.png")
+bisnes_kripi = pygame.image.load("o_o/bisnes_kripi_szadi.png")
+
+bisnes_kripi = pygame.transform.scale(bisnes_kripi,(146, 181))
+
+mr_hamster = pygame.image.load("o_o/mr_hamster_back.png")
+
+mr_hamster = pygame.transform.scale(mr_hamster,(146, 181))
+
+girl = pygame.image.load("o_o/girl.png")
+
+girl = pygame.transform.scale(girl,(146, 181))
+
+herobrine = pygame.transform.scale(herobrine,(146, 181))
+
+
+zombinet = pygame.Rect(400, 200, 146, 181)
+
+skin = pygame.Rect(50, 800, 50, 50)
+
+skin2 = pygame.Rect(200, 800, 50, 50)
+
+woda1 = pygame.Rect(0, 0, 300, 864)#создали левую воду - rect objekt
+
+woda2 = pygame.Rect(1236, 0, 300, 864)
+
+
+
+
+
+
 beg_v_levo = False
 beg_v_verh = False
 beg_v_pravo =False
 beg_v_vniz = False
 logicheskay_peremenay = True
 while logicheskay_peremenay != False:
-    # 1(4 отступа) отвечают за действие в игровом цикле
+    # 1(4 отступа) отвечают за действия мышкой и клавиатурой в игровом цикле
     for event in pygame.event.get():
         #print(event)
-        #2(8 пультов от ядерки)отвечают за что-то неведомое(ой за действия мышкой,кошкой и клавиатурой)
+
         if event.type == pygame.QUIT:
             logicheskay_peremenay = False
 
@@ -95,29 +147,63 @@ while logicheskay_peremenay != False:
             if pos_x >= 966 and pos_x <= 1343 and pos_y >= 655 and pos_y <= 721:
                 print("хомяяяяяяяяяяяяяяяяяяяяк")
                 logicheskay_peremenay = False
+    #2 логические операции в игре
         #print("крипер? нет нажали мышкой",mouse_batonchik,exitmouse_batonchik)
+    if ocherednoe_nechto == 2:
+        bullet = pygame.Rect(c, d, 10, 20)  # обьект прям(угольник забрали :(  ) x,y,w,h
 
+        dimon = pygame.Rect(a, b, 146, 181)
 
+        if beg_v_levo == True:
+            a -= 0.65
+            c -= 0.65
+            e -= 0.65
+
+            if woda1.colliderect(dimon):
+                beg_v_levo = False
+                #print("print(print())")
+
+        if beg_v_pravo == True:
+            a += 0.65
+            c += 0.65
+            e += 0.65
+
+            if woda2.colliderect(dimon):
+                beg_v_pravo = False
+
+        if zombinet.colliderect(bullet):
+            i_snowa = 1
+        if d != 100:
+            d -= two
+        if d == 100:
+            d += 500
+
+    #3 отбражение элементов на экране
     screen.fill(ne_razdrazhaussiy)#пролили краску на экран    :(
-    screen.blit(scorlupa, (0, 0))
     if ocherednoe_nechto == 1:
+        screen.blit(scorlupa, (0, 0))
         screen.blit(soloplayay,(400,500))#размЫщаем Ызображение на Ыкране
         screen.blit(exit_batonchik, (960, 650))
+        pygame.draw.rect(screen, (0, 191, 255), skin)
+        pygame.draw.rect(screen, (0, 191, 255), skin2)
         #nazad = pygame.image.load("o_o/nazad.png")
         #screen.blit(nazad, (4, 809))
         screen.blit(options,(399,659))
         screen.blit(serwer,(400,400))
     if ocherednoe_nechto == 2:
-        if beg_v_levo == True:
-            a -= 1
-        if beg_v_verh == True:
-            b-=1
-        if beg_v_pravo == True:
-            a += 1
-        if beg_v_vniz == True:
-            b+=1
         if sistemskin == 1:
             screen.blit(herobrine,(a,b))
         if sistemskin == 2:
             screen.blit(bisnes_kripi,(a,b))
+        if sistemskin == 3:
+            screen.blit(mr_hamster, (a, b))
+        if sistemskin == 4:
+            screen.blit(girl, (a, b))
+        #screen.blit(pistolet, (e, f))
+
+        pygame.draw.rect(screen,(201,148,42),bullet)#разместили в центр центрального центра экрана
+        pygame.draw.rect(screen, (0, 191, 255),woda1)
+        if i_snowa == 0:
+            screen.blit(zombi, (400, 200))
+        pygame.draw.rect(screen, (0, 191, 255),woda2)
     pygame.display.flip()#обновляем экран(FPS FPS FPS)
