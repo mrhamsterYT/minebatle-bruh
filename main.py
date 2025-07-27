@@ -2,6 +2,7 @@ import pygame#импортировали БИБЛИОТЕКУ с книжкам�
 import sys#импортировали модуль суслика для работы с компухтром
 import random
 pygame.init()
+clock = pygame.time.Clock()#ШАГ 1 сделали clock!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!27.07
 poroh_dly_oruzhiay = 0
 
 a = 700
@@ -72,9 +73,9 @@ serwer = pygame.image.load("o_o/serwer.png")
 
 herobrine = pygame.image.load("o_o/herobrin_model.png")
 
-bisnes_kripi = pygame.image.load("o_o/bisnes_kripi_szadi.png")
+bisnes_kripi_szadi = pygame.image.load("o_o/bisnes_kripi_szadi.png")
 
-bisnes_kripi = pygame.transform.scale(bisnes_kripi,(146, 181))
+bisnes_kripi_szadi = pygame.transform.scale(bisnes_kripi_szadi,(146, 181))
 
 mr_hamster = pygame.image.load("o_o/mr_hamster_back.png")
 
@@ -96,6 +97,8 @@ skin2 = pygame.Rect(200, 800, 50, 50)
 woda1 = pygame.Rect(0, 0, 300, 864)#создали левую воду - rect objekt
 
 woda2 = pygame.Rect(1236, 0, 300, 864)
+
+bisnes_kripi = pygame.image.load("o_o/bisnes_kripi-edited-free (carve.photos).png")
 
 
 
@@ -165,18 +168,18 @@ while logicheskay_peremenay != False:
         dimon = pygame.Rect(a, b, 146, 181)
 
         if beg_v_levo == True:
-            a -= 0.65
-            c -= 0.65
-            e -= 0.65
+            a -= 1
+            c -= 1
+            e -= 1
 
             if woda1.colliderect(dimon):
                 beg_v_levo = False
                 #print("print(print())")
 
         if beg_v_pravo == True:
-            a += 0.65
-            c += 0.65
-            e += 0.65
+            a += 1
+            c += 1
+            e += 1
 
             if woda2.colliderect(dimon):
                 beg_v_pravo = False
@@ -200,13 +203,19 @@ while logicheskay_peremenay != False:
         #screen.blit(nazad, (4, 809))
         screen.blit(options,(399,659))
         screen.blit(serwer,(400,400))
+        if sistemskin == 1:
+            screen.blit(herobrine, (0, 0))
+        if sistemskin == 2:
+            screen.blit(bisnes_kripi, (0, 0))
+        if sistemskin == 3:
+            screen.blit(mr_hamster, (0, 0))
+        if sistemskin == 4:
+            screen.blit(girl, (0, 0))
     if ocherednoe_nechto == 2:
         if sistemskin == 1:
             screen.blit(herobrine,(a,b))
-            screen.blit(herobrine, (0, 0))
         if sistemskin == 2:
-            screen.blit(bisnes_kripi,(a,b))
-            screen.blit(bisnes_kripi, (0, 0))
+            screen.blit(bisnes_kripi_szadi,(a,b))
         if sistemskin == 3:
             screen.blit(mr_hamster, (a, b))
         if sistemskin == 4:
@@ -219,3 +228,5 @@ while logicheskay_peremenay != False:
             screen.blit(zombi, (400, 200))
         pygame.draw.rect(screen, (0, 191, 255),woda2)
     pygame.display.flip()#обновляем экран(FPS FPS FPS)
+
+    clock.tick(160)#ШАГ 2 устоновили ограничение 160 фпс!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!27.07
